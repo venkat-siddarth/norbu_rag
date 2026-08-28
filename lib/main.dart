@@ -7,7 +7,7 @@ import 'package:norbu_rag/services/auth_service.dart';
 import 'package:norbu_rag/services/history_service.dart';
 import 'package:norbu_rag/services/gem_analysis_service.dart';
 import 'package:norbu_rag/services/mongodb_service.dart';
-import 'package:norbu_rag/services/update_service.dart';
+
 void main() {
   runApp(const MyApp());
 }

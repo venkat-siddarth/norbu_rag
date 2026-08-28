@@ -57,12 +57,17 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
       context: context,
       barrierDismissible: false,
+      
       builder: (dialogContext) => StatefulBuilder(
         builder: (context, setState) {
           UpdateService.downloadAndInstall(
             apkUrl,
             onProgress: (p) => setState(() => progress = p),
-          ).then((_) => Navigator.pop(dialogContext));
+          ).then((_) => {
+            if(dialogContext.mounted) {
+              Navigator.pop(dialogContext)
+            }
+          });
 
           return AlertDialog(
             title: const Text('Downloading update...'),
