@@ -25,6 +25,44 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+class _DownloadProgressDialog extends StatefulWidget {
+  final String apkUrl;
+  const _DownloadProgressDialog({required this.apkUrl});
+
+  @override
+  State<_DownloadProgressDialog> createState() => _DownloadProgressDialogState();
+}
+
+class _DownloadProgressDialogState extends State<_DownloadProgressDialog> {
+  double _progress = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _startDownload();
+  }
+
+  Future<void> _startDownload() async {
+    await UpdateService.downloadAndInstall(
+      widget.apkUrl,
+      onProgress: (p) {
+        if (!mounted) return;
+        setState(() => _progress = p);
+      },
+    );
+    if (!mounted) return;
+    Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Downloading update...'),
+      content: LinearProgressIndicator(value: _progress),
+    );
+  }
+}
+
 class _HomeScreenState extends State<HomeScreen> {
   final ImagePicker _picker = ImagePicker();
   String? _selectedImagePath;
@@ -53,28 +91,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _showDownloadProgress(String apkUrl) {
-    double progress = 0;
+    
     showDialog(
       context: context,
       barrierDismissible: false,
-      
-      builder: (dialogContext) => StatefulBuilder(
-        builder: (context, setState) {
-          UpdateService.downloadAndInstall(
-            apkUrl,
-            onProgress: (p) => setState(() => progress = p),
-          ).then((_) => {
-            if(dialogContext.mounted) {
-              Navigator.pop(dialogContext)
-            }
-          });
-
-          return AlertDialog(
-            title: const Text('Downloading update...'),
-            content: LinearProgressIndicator(value: progress),
-          );
-        },
-      ),
+      builder: (dialogContext) => _DownloadProgressDialog(apkUrl: apkUrl),
     );
   }
   @override
