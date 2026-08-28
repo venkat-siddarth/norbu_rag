@@ -16,7 +16,7 @@ class UpdateInfo {
 }
 
 class UpdateService {
-  static const _repo = 'yourname/yourrepo'; // <-- change this
+  static const _repo = 'venkat-siddarth/norbu_rag'; // <-- change this
   static const _apiUrl = 'https://api.github.com/repos/$_repo/releases/latest';
 
   static Future<UpdateInfo?> checkForUpdate() async {
