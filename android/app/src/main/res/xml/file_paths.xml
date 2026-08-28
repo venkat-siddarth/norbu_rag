@@ -1,0 +1,4 @@
+<!-- android/app/src/main/res/xml/file_paths.xml (new file) -->
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-files-path name="apk_updates" path="."/>
+</paths>
