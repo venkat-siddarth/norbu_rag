@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Norbu GemID"),
+        title: const Text("Norbu RAG"),
         backgroundColor: theme.colorScheme.primary,
         foregroundColor: Colors.white,
         centerTitle: true,

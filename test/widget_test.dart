@@ -3,12 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:norbu_rag/main.dart';
 
 void main() {
-  testWidgets('Norbu GemID App Navigation and Smoke Test', (WidgetTester tester) async {
+  testWidgets('Norbu RAG App Navigation and Smoke Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that the title in the App Bar is "Norbu GemID" (HomeScreen active)
-    expect(find.text('Norbu GemID'), findsOneWidget);
+    // Verify that the title in the App Bar is "Norbu RAG" (HomeScreen active)
+    expect(find.text('Norbu RAG'), findsOneWidget);
 
     // Verify we have the instruction welcome message
     expect(find.text('Identify Your Gemstone'), findsOneWidget);
