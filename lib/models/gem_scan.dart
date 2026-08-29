@@ -24,6 +24,7 @@ class GemScan {
   });
   final List<GemPrediction> alternatives;
   factory GemScan.fromJson(Map<String, dynamic> json, {required String localImagePath, DateTime? timestamp}) {
+    if (json["uses"] is String) {json["uses"] = [json["uses"]];}
     return GemScan(
       name: json['name'] as String? ?? 'Unknown Gem',
       characteristics: (json['characteristics'] as List<dynamic>?)
@@ -96,6 +97,7 @@ class GemPrediction {
   });
 
   factory GemPrediction.fromJson(Map<String, dynamic> json) {
+    if (json["uses"] is String) {json["uses"] = [json["uses"]];}
     return GemPrediction(
       name: json['name'] as String? ?? 'Unknown',
       confidence: json['confidence'] as String? ?? '0%',
